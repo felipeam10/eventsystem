@@ -2,6 +2,8 @@ package com.felipe.eventsystem.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,9 +26,9 @@ public class Activity {
 //    private Participant participanties;
 
 
-//    @OneToMany
+    @OneToMany
 //    @JoinColumn(name = "blocs_id")
-//    private Bloc blocs;
+    private List<Bloc> blocs = new ArrayList<>();
 
     public Activity(){}
 
@@ -69,14 +71,6 @@ public class Activity {
         this.price = price;
     }
 
-//    public Bloc getBlocs() {
-//        return blocs;
-//    }
-//
-//    public void setBlocs(Bloc blocs) {
-//        this.blocs = blocs;
-//    }
-//
 //    public Participant getParticipanties() {
 //        return participanties;
 //    }
@@ -84,6 +78,11 @@ public class Activity {
 //    public void setParticipanties(Participant participanties) {
 //        this.participanties = participanties;
 //    }
+
+
+    public List<Bloc> getBlocs() {
+        return blocs;
+    }
 
     public Category getCategory() {
         return category;

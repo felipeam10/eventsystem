@@ -18,8 +18,8 @@ public class Bloc {
     private Instant finish;
 
 
-    @OneToOne
-    @JoinColumn(name = "activity_id")
+    @ManyToOne
+    @MapsId
     private Activity activity;
 
     public Bloc(){}
