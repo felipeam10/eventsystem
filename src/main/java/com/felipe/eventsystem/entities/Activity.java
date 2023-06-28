@@ -2,9 +2,7 @@ package com.felipe.eventsystem.entities;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_activity")
@@ -14,21 +12,18 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private Double price;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
-//    @OneToMany
-//    @JoinColumn(name = "participanties_id")
-//    private Participant participanties;
-
-
-    @OneToMany
-//    @JoinColumn(name = "blocs_id")
+    @OneToMany(mappedBy = "activity")
     private List<Bloc> blocs = new ArrayList<>();
+    @ManyToMany(mappedBy = "activities")
+    private Set<Participant> participants = new HashSet<>();
+
 
     public Activity(){}
 
@@ -71,14 +66,9 @@ public class Activity {
         this.price = price;
     }
 
-//    public Participant getParticipanties() {
-//        return participanties;
-//    }
-//
-//    public void setParticipanties(Participant participanties) {
-//        this.participanties = participanties;
-//    }
-
+    public Set<Participant> getParticipants() {
+        return participants;
+    }
 
     public List<Bloc> getBlocs() {
         return blocs;

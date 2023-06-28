@@ -19,7 +19,7 @@ public class Bloc {
 
 
     @ManyToOne
-    @MapsId
+    @JoinColumn(name = "activity_id")
     private Activity activity;
 
     public Bloc(){}
